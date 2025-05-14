@@ -101,11 +101,10 @@
   <body>
     <div id="map-container">
       <h1>Mapa Expo Publicitas 2025</h1>
-      <svg
-        id="mapModules"
-        width="1342.5"
-        height="500"
-        viewBox="0 -320 1342.5 720"
+      <svg   id="mapModules"
+      width="1342.5"
+      height="500"
+      viewBox="0 -320 1342.5 720">
       ></svg>
     </div>
 
@@ -460,7 +459,430 @@
       module2100Text.textContent = "2100";
       module2100Group.appendChild(module2100Text);
       svg.appendChild(module2100Group);
-      
+      // Nuevo módulo 2102 al lado del módulo 2100
+const module2102 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module2102.setAttribute("x", 1278.911); // Justo a la derecha de x=1375.911 + 30
+module2102.setAttribute("y", 310); // Alineado con la parte horizontal del módulo 2100
+module2102.setAttribute("width", 30); // Ancho igual a la parte horizontal
+module2102.setAttribute("height",  30); // Altura igual a la parte horizontal
+module2102.setAttribute("class", "module yellow"); // Mismo color que el módulo 2100
+module2102.addEventListener("click", () => {
+    alert("Módulo 2102 seleccionado.");
+});
+module2102.addEventListener("mouseover", (e) => {
+    showTooltip(e, "Módulo 2102: Empresa de tecnología innovadora");
+});
+module2102.addEventListener("mouseout", hideTooltip);
+svg.appendChild(module2102);
+
+// Texto para el módulo 2102
+const module2102Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module2102Text.setAttribute("x", 1278.911 + 30 / 2); // Centrado horizontalmente
+module2102Text.setAttribute("y", 286 + 74.012 / 2 + 4); // Centrado verticalmente
+module2102Text.setAttribute("text-anchor", "middle");
+module2102Text.textContent = "2102";
+svg.appendChild(module2102Text);
+// Crear un nuevo módulo al lado del módulo 2102
+const module2102New = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module2102New.setAttribute("x", 1218); // Ajusta esto según la posición actual del módulo 2102
+module2102New.setAttribute("y", 310); // Ajusta esto según la posición actual del módulo 2102
+module2102New.setAttribute("width", 60);
+module2102New.setAttribute("height", 30);
+module2102New.setAttribute("class", "module yellow"); // Cambia el color según tu preferencia
+module2102New.addEventListener("click", () => {
+  alert("Módulo 2102A seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module2102NewText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module2102NewText.setAttribute("x", 1218 + 30); // Centrar el texto dentro del módulo
+module2102NewText.setAttribute("y", 313 + 15); // Centrar el texto dentro del módulo
+module2102NewText.setAttribute("text-anchor", "middle");
+module2102NewText.textContent = "2000";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module2102New);
+svg.appendChild(module2102NewText);
+// Crear un nuevo módulo al lado del módulo 2102A
+const module1900 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module1900.setAttribute("x", 1180); // Ajusta esto en base a la posición actual del módulo 2102A
+module1900.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 2102A
+module1900.setAttribute("width", 30);
+module1900.setAttribute("height", 30);
+module1900.setAttribute("class", "module yellow"); // Cambia el color si lo deseas
+module1900.addEventListener("click", () => {
+  alert("Módulo 1900 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module1900Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module1900Text.setAttribute("x", 1180 + 15); // Centrar el texto dentro del módulo
+module1900Text.setAttribute("y", 325 + 2); // Centrar el texto dentro del módulo
+module1900Text.setAttribute("text-anchor", "middle");
+module1900Text.textContent = "1900";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module1900);
+svg.appendChild(module1900Text);
+// Crear un nuevo módulo al lado del módulo 1900
+const module1800 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module1800.setAttribute("x", 1145); // Ajusta esto en base a la posición actual del módulo 1900
+module1800.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 1900
+module1800.setAttribute("width", 30);
+module1800.setAttribute("height", 30);
+module1800.setAttribute("class", "module yellow"); // Cambia el color si lo deseas
+module1800.addEventListener("click", () => {
+  alert("Módulo 1800 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module1800Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module1800Text.setAttribute("x", 1145 + 15); // Centrar el texto dentro del módulo
+module1800Text.setAttribute("y", 327 + 2); // Centrar el texto dentro del módulo
+module1800Text.setAttribute("text-anchor", "middle");
+module1800Text.textContent = "1800";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module1800);
+svg.appendChild(module1800Text);
+// Crear un nuevo módulo al lado del módulo 1800
+const module1700 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module1700.setAttribute("x", 1055); // Ajusta esto en base a la posición actual del módulo 1800
+module1700.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 1800
+module1700.setAttribute("width", 90);
+module1700.setAttribute("height", 30);
+module1700.setAttribute("class", "module yellow"); // Cambia el color si lo deseas
+module1700.addEventListener("click", () => {
+  alert("Módulo 1700 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module1700Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module1700Text.setAttribute("x", 1078 + 15); // Centrar el texto dentro del módulo
+module1700Text.setAttribute("y", 327 ); // Centrar el texto dentro del módulo
+module1700Text.setAttribute("text-anchor", "middle");
+module1700Text.textContent = "1700";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module1700);
+svg.appendChild(module1700Text);
+// Crear un nuevo módulo al lado del módulo 1700
+const module1500 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module1500.setAttribute("x", 870); // Ajusta esto en base a la posición actual del módulo 1700
+module1500.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 1700
+module1500.setAttribute("width", 60);
+module1500.setAttribute("height", 30);
+module1500.setAttribute("class", "module yellow"); // Cambia el color si lo deseas
+module1500.addEventListener("click", () => {
+  alert("Módulo 1500 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module1500Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module1500Text.setAttribute("x", 880 + 15); // Centrar el texto dentro del módulo
+module1500Text.setAttribute("y", 327 + 2); // Centrar el texto dentro del módulo
+module1500Text.setAttribute("text-anchor", "middle");
+module1500Text.textContent = "1500";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module1500);
+svg.appendChild(module1500Text);
+// Crear un nuevo módulo al lado del módulo 1500
+const module1400 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module1400.setAttribute("x", 800); // Ajusta esto en base a la posición actual del módulo 1400
+module1400.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 1400
+module1400.setAttribute("width", 50);
+module1400.setAttribute("height", 30);
+module1400.setAttribute("class", "module yellow"); // Cambia el color si lo deseas
+module1400.addEventListener("click", () => {
+  alert("Módulo 1400 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module1400Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module1400Text.setAttribute("x", 810 + 15); // Centrar el texto dentro del módulo
+module1400Text.setAttribute("y", 327+ 2); // Centrar el texto dentro del módulo
+module1400Text.setAttribute("text-anchor", "middle");
+module1400Text.textContent = "1400";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module1400);
+svg.appendChild(module1400Text);
+// Crear un nuevo módulo al lado del módulo 1400
+const module1300 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module1300.setAttribute("x", 750); // Ajusta esto en base a la posición actual del módulo 1300
+module1300.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 1300
+module1300.setAttribute("width", 30);
+module1300.setAttribute("height", 30);
+module1300.setAttribute("class", "module orange"); // Cambia el color si lo deseas
+module1300.addEventListener("click", () => {
+  alert("Módulo 1300 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module1300Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module1300Text.setAttribute("x", 750 + 15); // Centrar el texto dentro del módulo
+module1300Text.setAttribute("y", 327 + 2); // Centrar el texto dentro del módulo
+module1300Text.setAttribute("text-anchor", "middle");
+module1300Text.textContent = "1300";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module1300);
+svg.appendChild(module1300Text);
+// Crear un nuevo módulo al lado del módulo 1202
+const module1202 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module1202.setAttribute("x", 720); // Ajusta esto en base a la posición actual del módulo 1202
+module1202.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 1202
+module1202.setAttribute("width", 30);
+module1202.setAttribute("height", 30);
+module1202.setAttribute("class", "module orange"); // Cambia el color si lo deseas
+module1202.addEventListener("click", () => {
+  alert("Módulo 1202 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module1202Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module1202Text.setAttribute("x", 720 + 15); // Centrar el texto dentro del módulo
+module1202Text.setAttribute("y", 327 + 2); // Centrar el texto dentro del módulo
+module1202Text.setAttribute("text-anchor", "middle");
+module1202Text.textContent = "1202";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module1202);
+svg.appendChild(module1202Text);
+// Crear un nuevo módulo al lado del módulo 1201
+const module1201 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module1201.setAttribute("x", 690); // Ajusta esto en base a la posición actual del módulo 1202
+module1201.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 1202
+module1201.setAttribute("width", 30);
+module1201.setAttribute("height", 30);
+module1201.setAttribute("class", "module orange"); // Cambia el color si lo deseas
+module1201.addEventListener("click", () => {
+  alert("Módulo 1201 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module1201Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module1201Text.setAttribute("x", 690 + 15); // Centrar el texto dentro del módulo
+module1201Text.setAttribute("y", 327 + 2); // Centrar el texto dentro del módulo
+module1201Text.setAttribute("text-anchor", "middle");
+module1201Text.textContent = "1201";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module1201);
+svg.appendChild(module1201Text);
+// Crear un nuevo módulo al lado del módulo 1200
+const module1200 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module1200.setAttribute("x", 660); // Ajusta esto en base a la posición actual del módulo 1200
+module1200.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 1200
+module1200.setAttribute("width", 30);
+module1200.setAttribute("height", 30);
+module1200.setAttribute("class", "module orange"); // Cambia el color si lo deseas
+module1200.addEventListener("click", () => {
+  alert("Módulo 1200 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module1200Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module1200Text.setAttribute("x", 660 + 15); // Centrar el texto dentro del módulo
+module1200Text.setAttribute("y", 327 + 2); // Centrar el texto dentro del módulo
+module1200Text.setAttribute("text-anchor", "middle");
+module1200Text.textContent = "1200";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module1200);
+svg.appendChild(module1200Text);
+// Crear un nuevo módulo al lado del módulo 1102
+const module1102 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module1102.setAttribute("x", 630); // Ajusta esto en base a la posición actual del módulo 1200
+module1102.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 1200
+module1102.setAttribute("width", 30);
+module1102.setAttribute("height", 30);
+module1102.setAttribute("class", "module orange"); // Cambia el color si lo deseas
+module1102.addEventListener("click", () => {
+  alert("Módulo 1102 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module1102Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module1102Text.setAttribute("x", 630 + 15); // Centrar el texto dentro del módulo
+module1102Text.setAttribute("y", 327 + 2); // Centrar el texto dentro del módulo
+module1102Text.setAttribute("text-anchor", "middle");
+module1102Text.textContent = "1102";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module1102);
+svg.appendChild(module1102Text);
+// Crear un nuevo módulo al lado del módulo 1100
+const module1100 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module1100.setAttribute("x", 560); // Ajusta esto en base a la posición actual del módulo 1100
+module1100.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 1100
+module1100.setAttribute("width", 70);
+module1100.setAttribute("height", 30);
+module1100.setAttribute("class", "module orange"); // Cambia el color si lo deseas
+module1100.addEventListener("click", () => {
+  alert("Módulo 1100 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module1100Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module1100Text.setAttribute("x", 580 + 15); // Centrar el texto dentro del módulo
+module1100Text.setAttribute("y", 327 + 2); // Centrar el texto dentro del módulo
+module1100Text.setAttribute("text-anchor", "middle");
+module1100Text.textContent = "1100";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module1100);
+svg.appendChild(module1100Text);
+// Crear un nuevo módulo al lado del módulo 802
+const module802 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module802.setAttribute("x", 470); // Ajusta esto en base a la posición actual del módulo 802
+module802.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 802
+module802.setAttribute("width", 90);
+module802.setAttribute("height", 30);
+module802.setAttribute("class", "module orange"); // Cambia el color si lo deseas
+module802.addEventListener("click", () => {
+  alert("Módulo 802 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module802Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module802Text.setAttribute("x", 500 + 15); // Centrar el texto dentro del módulo
+module802Text.setAttribute("y", 327 + 2); // Centrar el texto dentro del módulo
+module802Text.setAttribute("text-anchor", "middle");
+module802Text.textContent = "802";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module802);
+svg.appendChild(module802Text);
+// Crear un nuevo módulo al lado del módulo 802
+const module801 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module801.setAttribute("x", 440); // Ajusta esto en base a la posición actual del módulo 801
+module801.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 801
+module801.setAttribute("width", 30);
+module801.setAttribute("height", 30);
+module801.setAttribute("class", "module orange"); // Cambia el color si lo deseas
+module801.addEventListener("click", () => {
+  alert("Módulo 801 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module801Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module801Text.setAttribute("x", 440 + 15); // Centrar el texto dentro del módulo
+module801Text.setAttribute("y", 327 + 2); // Centrar el texto dentro del módulo
+module801Text.setAttribute("text-anchor", "middle");
+module801Text.textContent = "801";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module801);
+svg.appendChild(module801Text);
+// Crear un nuevo módulo al lado del módulo 800
+const module800 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module800.setAttribute("x", 409); // Ajusta esto en base a la posición actual del módulo 801
+module800.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 801
+module800.setAttribute("width", 30);
+module800.setAttribute("height", 30);
+module800.setAttribute("class", "module orange"); // Cambia el color si lo deseas
+module800.addEventListener("click", () => {
+  alert("Módulo 800 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module800Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module800Text.setAttribute("x", 409 + 15); // Centrar el texto dentro del módulo
+module800Text.setAttribute("y", 327 + 2); // Centrar el texto dentro del módulo
+module800Text.setAttribute("text-anchor", "middle");
+module800Text.textContent = "800";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module800);
+svg.appendChild(module800Text);
+// Crear un nuevo módulo al lado del módulo 700
+const module700 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module700.setAttribute("x", 320); // Ajusta esto en base a la posición actual del módulo 700
+module700.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 700
+module700.setAttribute("width", 30);
+module700.setAttribute("height", 30);
+module700.setAttribute("class", "module green"); // Cambia el color si lo deseas
+module700.addEventListener("click", () => {
+  alert("Módulo 700 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module700Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module700Text.setAttribute("x", 320 + 15); // Centrar el texto dentro del módulo
+module700Text.setAttribute("y", 327 + 2); // Centrar el texto dentro del módulo
+module700Text.setAttribute("text-anchor", "middle");
+module700Text.textContent = "700";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module700);
+svg.appendChild(module700Text);
+// Crear un nuevo módulo al lado del módulo 602
+const module602 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module602.setAttribute("x", 270); // Ajusta esto en base a la posición actual del módulo 700
+module602.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 700
+module602.setAttribute("width", 30);
+module602.setAttribute("height", 30);
+module602.setAttribute("class", "module green"); // Cambia el color si lo deseas
+module602.addEventListener("click", () => {
+  alert("Módulo 602 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module602Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module602Text.setAttribute("x", 270 + 15); // Centrar el texto dentro del módulo
+module602Text.setAttribute("y", 327 + 2); // Centrar el texto dentro del módulo
+module602Text.setAttribute("text-anchor", "middle");
+module602Text.textContent = "602";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module602);
+svg.appendChild(module602Text);
+// Crear un nuevo módulo al lado del módulo 601
+const module601 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module601.setAttribute("x", 240); // Ajusta esto en base a la posición actual del módulo 700
+module601.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 700
+module601.setAttribute("width", 30);
+module601.setAttribute("height", 30);
+module601.setAttribute("class", "module green"); // Cambia el color si lo deseas
+module601.addEventListener("click", () => {
+  alert("Módulo 601 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module601Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module601Text.setAttribute("x", 240 + 15); // Centrar el texto dentro del módulo
+module601Text.setAttribute("y", 327 + 2); // Centrar el texto dentro del módulo
+module601Text.setAttribute("text-anchor", "middle");
+module601Text.textContent = "601";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module601);
+svg.appendChild(module601Text);
+// Crear un nuevo módulo al lado del módulo 600
+const module600 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+module600.setAttribute("x", 210); // Ajusta esto en base a la posición actual del módulo 700
+module600.setAttribute("y", 310); // Mantén la misma posición vertical que el módulo 700
+module600.setAttribute("width", 30);
+module600.setAttribute("height", 30);
+module600.setAttribute("class", "module green"); // Cambia el color si lo deseas
+module600.addEventListener("click", () => {
+  alert("Módulo 600 seleccionado.");
+});
+
+// Agregar texto al nuevo módulo
+const module600Text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+module600Text.setAttribute("x", 210 + 15); // Centrar el texto dentro del módulo
+module600Text.setAttribute("y", 327 + 2); // Centrar el texto dentro del módulo
+module600Text.setAttribute("text-anchor", "middle");
+module600Text.textContent = "600";
+
+// Agregar el módulo y el texto al SVG
+svg.appendChild(module600);
+svg.appendChild(module600Text);
+
+
       // =====================================
       // Funciones para dibujar los grupos
       // =====================================
@@ -2085,3 +2507,4 @@
     </script>
   </body>
 </html>
+
