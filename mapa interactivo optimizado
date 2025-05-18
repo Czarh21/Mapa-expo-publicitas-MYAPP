@@ -23,7 +23,6 @@
         padding: 10px;
         overflow-x: hidden;
         touch-action: manipulation;
-        -webkit-tap-highlight-color: transparent;
       }
 
       .container {
@@ -40,11 +39,8 @@
       h3 {
         text-align: center;
         color: #333;
-      }
-
-      h1 {
         font-size: 1.5rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: 10px;
       }
 
       .section-title {
@@ -58,7 +54,7 @@
 
       .module-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 10px;
         margin-top: 15px;
       }
@@ -71,6 +67,7 @@
         cursor: pointer;
         transition: transform 0.2s, box-shadow 0.2s;
         position: relative;
+        font-size: 0.9rem;
       }
 
       .module-card:hover {
@@ -102,13 +99,13 @@
         margin-top: 0;
         margin-bottom: 8px;
         color: #333;
-        font-size: 14px;
+        font-size: 1rem;
       }
 
       .module-card p {
         margin: 0;
         color: #666;
-        font-size: 12px;
+        font-size: 0.8rem;
       }
 
       /* Estilos de parpadeo para cada color */
@@ -203,6 +200,27 @@
         }
       }
 
+      @keyframes blink-stand {
+        0%,
+        100% {
+          stroke-width: 3px;
+          stroke: #000;
+          transform: scale(1);
+        }
+        50% {
+          stroke-width: 5px;
+          stroke: #ff0000;
+          transform: scale(1.05);
+        }
+      }
+
+      .module.blinking {
+        animation: blink-stand 0.7s infinite;
+        stroke-width: 3px;
+        stroke: #000;
+        z-index: 10;
+      }
+
       .search-container {
         margin-bottom: 15px;
         text-align: center;
@@ -214,7 +232,7 @@
         max-width: 300px;
         border: 1px solid #ddd;
         border-radius: 4px;
-        font-size: 14px;
+        font-size: 16px;
       }
 
       .search-input:focus {
@@ -261,7 +279,8 @@
         background-color: #f0f0f0;
         cursor: pointer;
         transition: background-color 0.2s;
-        font-size: 12px;
+        font-size: 0.8rem;
+        white-space: nowrap;
       }
 
       .filter-btn:hover {
@@ -297,7 +316,7 @@
         text-align: center;
         font-weight: bold;
         color: #1565c0;
-        font-size: 14px;
+        font-size: 0.9rem;
       }
 
       .no-results {
@@ -346,7 +365,7 @@
         display: grid;
         grid-template-columns: 1fr;
         gap: 1rem;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
       }
 
       .sidebar {
@@ -360,7 +379,7 @@
         border-radius: 0.75rem;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
           0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        padding: 0.75rem;
+        padding: 0.8rem;
       }
 
       .card-title {
@@ -399,19 +418,19 @@
       }
 
       .legend-color {
-        width: 1.25rem;
-        height: 1.25rem;
+        width: 1rem;
+        height: 1rem;
         border-radius: 0.25rem;
         margin-right: 0.5rem;
       }
 
       .legend-text {
-        font-size: 0.875rem;
+        font-size: 0.8rem;
         color: #4b5563;
       }
 
       .info-text {
-        font-size: 0.875rem;
+        font-size: 0.8rem;
         color: #6b7280;
       }
 
@@ -425,15 +444,15 @@
         border-radius: 0.75rem;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
           0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        padding: 0.75rem;
+        padding: 0.8rem;
         position: relative;
         overflow: hidden;
       }
 
       .zoom-controls {
         position: absolute;
-        top: 0.75rem;
-        right: 0.75rem;
+        top: 0.8rem;
+        right: 0.8rem;
         z-index: 10;
         background-color: white;
         border-radius: 0.5rem;
@@ -580,7 +599,7 @@
       }
 
       .stand-label {
-        font-size: 12px;
+        font-size: 10px;
         fill: #1e293b;
         font-weight: 500;
         pointer-events: none;
@@ -593,7 +612,7 @@
 
       /* Botón de mapa interactivo */
       .map-button {
-        padding: 10px 20px;
+        padding: 10px 15px;
         background-color: #4a6bff;
         color: white;
         border: none;
@@ -617,6 +636,15 @@
         transform: translateY(0);
       }
 
+      /* Contenedor del mapa interactivo */
+      #interactive-map-container {
+        display: none;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
       /* Botón de rotación */
       .rotate-button {
         position: fixed;
@@ -624,61 +652,60 @@
         left: 20px;
         background-color: #4a6bff;
         color: white;
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        border: none;
         z-index: 100;
-        transition: transform 0.3s ease;
+        border: none;
       }
 
-      .rotate-button:hover {
-        background-color: #3a5ae8;
-      }
-
-      .rotate-button:active {
-        transform: scale(0.95);
-      }
-
-      .rotate-icon {
+      .rotate-button svg {
         width: 24px;
         height: 24px;
       }
 
-      /* Contenedor del mapa interactivo */
-      #interactive-map-container {
-        display: none;
-        margin-bottom: 20px;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      /* Estilos para orientación horizontal */
+      /* Estilos para modo horizontal */
       .landscape-mode {
-        transform: rotate(90deg);
-        transform-origin: center;
-        width: 100vh;
-        height: 100vw;
         position: fixed;
         top: 0;
         left: 0;
         z-index: 1000;
         background-color: white;
+        width: 100vw;
+        height: 100vh;
         overflow: auto;
+        padding: 10px;
       }
 
       .landscape-mode .map-container {
         grid-template-columns: 1fr 3fr;
+        height: 100%;
       }
 
       .landscape-mode .map-scroll {
-        height: 80vh;
+        height: calc(100vh - 4rem);
+      }
+
+      .landscape-mode .close-landscape {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #f44336;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1001;
+        border: none;
       }
 
       /* Media queries para dispositivos móviles */
@@ -695,54 +722,38 @@
           font-size: 2rem;
         }
 
-        .map-scroll {
-          height: 70vh;
-        }
-
         .module-grid {
           grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
         }
 
-        .map-button {
-          font-size: 16px;
-        }
-
-        .filter-btn {
-          font-size: 14px;
-          padding: 8px 15px;
+        .map-scroll {
+          height: 70vh;
         }
       }
 
-      /* Estilos para pantallas táctiles */
-      @media (hover: none) {
-        .module:hover {
-          fill: inherit;
+      @media (max-width: 480px) {
+        .filters {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          padding-bottom: 5px;
+          justify-content: flex-start;
+          -webkit-overflow-scrolling: touch;
         }
 
-        .module.red:hover {
-          fill: #ef4444;
+        .filter-btn {
+          flex: 0 0 auto;
         }
 
-        .module.green:hover {
-          fill: #16a34a;
+        .module-card h3 {
+          font-size: 0.9rem;
         }
 
-        .module.orange:hover {
-          fill: #f97316;
+        .module-card p {
+          font-size: 0.75rem;
         }
 
-        .module.yellow:hover {
-          fill: #facc15;
-        }
-
-        .module-card:hover {
-          transform: none;
-          box-shadow: none;
-        }
-
-        .module-card:active {
-          transform: translateY(-3px);
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        .stand-label {
+          font-size: 8px;
         }
       }
     </style>
@@ -755,27 +766,6 @@
       <!-- Botón de Mapa Interactivo -->
       <button id="toggle-map-btn" class="map-button">
         Mostrar Mapa Interactivo
-      </button>
-
-      <!-- Botón de rotación -->
-      <button id="rotate-map-btn" class="rotate-button">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="rotate-icon"
-        >
-          <path d="M3 2v7h7"></path>
-          <path d="M21 12A9 9 0 0 0 6 5.3L3 8"></path>
-          <path d="M21 22v-7h-7"></path>
-          <path d="M3 12a9 9 0 0 0 15 6.7l3-2.7"></path>
-        </svg>
       </button>
 
       <!-- Contenedor del Mapa Interactivo -->
@@ -799,9 +789,9 @@
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -869,9 +859,9 @@
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <circle cx="11" cy="11" r="8"></circle>
                   <line x1="11" y1="8" x2="11" y2="14"></line>
@@ -887,9 +877,9 @@
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <circle cx="11" cy="11" r="8"></circle>
                   <line x1="8" y1="11" x2="14" y2="11"></line>
@@ -904,9 +894,9 @@
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path
                     d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
@@ -938,7 +928,7 @@
                     <text
                       x="671.25"
                       y="19"
-                      text-anchor="middle"
+                      textAnchor="middle"
                       class="corridor-label"
                     >
                       Pasillo D
@@ -955,7 +945,7 @@
                     <text
                       x="671.25"
                       y="95.75"
-                      text-anchor="middle"
+                      textAnchor="middle"
                       class="corridor-label"
                     >
                       Pasillo C
@@ -972,7 +962,7 @@
                     <text
                       x="671.25"
                       y="172.5"
-                      text-anchor="middle"
+                      textAnchor="middle"
                       class="corridor-label"
                     >
                       Pasillo B
@@ -989,7 +979,7 @@
                     <text
                       x="671.25"
                       y="249.25"
-                      text-anchor="middle"
+                      textAnchor="middle"
                       class="corridor-label"
                     >
                       Pasillo A
@@ -1006,7 +996,7 @@
                     <text
                       x="671.25"
                       y="-174"
-                      text-anchor="middle"
+                      textAnchor="middle"
                       class="corridor-label"
                     >
                       Pasillo E
@@ -1059,7 +1049,7 @@
                     <text
                       x="1370.911"
                       y="303"
-                      text-anchor="middle"
+                      textAnchor="middle"
                       class="stand-label"
                     >
                       2100
@@ -1080,7 +1070,7 @@
                     <text
                       x="1305.911"
                       y="327"
-                      text-anchor="middle"
+                      textAnchor="middle"
                       class="stand-label"
                     >
                       2102
@@ -1098,7 +1088,7 @@
                     <text
                       x="1257"
                       y="327"
-                      text-anchor="middle"
+                      textAnchor="middle"
                       class="stand-label"
                     >
                       2000
@@ -1116,7 +1106,7 @@
                     <text
                       x="1195"
                       y="327"
-                      text-anchor="middle"
+                      textAnchor="middle"
                       class="stand-label"
                     >
                       1900
@@ -1135,7 +1125,7 @@
                   <text
                     x="784"
                     y="-81.5"
-                    text-anchor="middle"
+                    textAnchor="middle"
                     class="stand-label"
                   >
                     1421
@@ -1186,10 +1176,10 @@
           Retail marketing/Visual
         </button>
         <button class="filter-btn orange" data-filter="orange">
-          Equipos de impresion/Inpresion/Empaque
+          Equipos de impresion
         </button>
         <button class="filter-btn yellow" data-filter="yellow">
-          Promocionales/Regalo corporativo
+          Promocionales
         </button>
       </div>
 
@@ -1198,6 +1188,26 @@
       </div>
 
       <a href="#" class="back-to-top" id="back-to-top">↑</a>
+
+      <!-- Botón de rotación para vista horizontal -->
+      <button class="rotate-button" id="rotate-button">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M3 2v7h7"></path>
+          <path d="M21 12A9 9 0 0 0 6 5.3L3 8"></path>
+          <path d="M21 22v-7h-7"></path>
+          <path d="M3 12a9 9 0 0 0 15 6.7l3-2.7"></path>
+        </svg>
+      </button>
     </div>
 
     <script>
@@ -1525,7 +1535,7 @@
               width: 23.375,
               height: 23.375,
               color: "green",
-              id: "426",
+              id: "425",
             },
             {
               x: 23.375,
@@ -1553,7 +1563,695 @@
             },
           ],
         },
-        // Resto de grupos...
+        // Grupo A
+        {
+          transform: "translate(153.5, -140.25)",
+          modules: [
+            {
+              x: 0.25,
+              y: 0,
+              width: 46.25,
+              height: 58.9345,
+              color: "green",
+              id: "529",
+            },
+            {
+              x: 0,
+              y: 58.9345,
+              width: 23.375,
+              height: 23.375,
+              color: "green",
+              id: "525",
+            },
+            {
+              x: 23.375,
+              y: 58.9345,
+              width: 23.375,
+              height: 23.375,
+              color: "green",
+              id: "626",
+            },
+            {
+              x: 0,
+              y: 82.3095,
+              width: 23.375,
+              height: 58.4375,
+              color: "green",
+              id: "521",
+            },
+            {
+              x: 23.375,
+              y: 82.3095,
+              width: 23.375,
+              height: 58.4375,
+              color: "green",
+              id: "622",
+            },
+          ],
+        },
+        // Grupo A invertido
+        {
+          transform: "translate(230.25, -140.747)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.375,
+              height: 58.4375,
+              color: "green",
+              id: "629",
+            },
+            {
+              x: 23.375,
+              y: 0,
+              width: 23.375,
+              height: 58.4375,
+              color: "green",
+              id: "730",
+            },
+            {
+              x: 0,
+              y: 58.4375,
+              width: 23.375,
+              height: 23.375,
+              color: "green",
+              id: "625",
+            },
+            {
+              x: 23.375,
+              y: 58.4375,
+              width: 23.375,
+              height: 23.375,
+              color: "green",
+              id: "726",
+            },
+            {
+              x: 0.25,
+              y: 81.8125,
+              width: 46.25,
+              height: 58.9345,
+              color: "green",
+              id: "621",
+            },
+          ],
+        },
+        // Grupo Y adicional
+        {
+          transform: "translate(307, -140.25)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 46.25,
+              height: 140.25,
+              color: "green",
+              id: "821",
+            },
+          ],
+        },
+
+        // Módulo 821
+        {
+          standalone: true,
+          x: 383.75,
+          y: -140.25,
+          width: 46.25,
+          height: 58.9345,
+          color: "orange",
+          id: "929",
+        },
+        // Módulo 1328
+        {
+          standalone: true,
+          x: 383.75,
+          y: -82,
+          width: 23.375,
+          height: 27,
+          color: "orange",
+          id: "925",
+        },
+        // Módulo 921
+        {
+          standalone: true,
+          x: 383.75,
+          y: -55,
+          width: 23.375,
+          height: 55,
+          color: "orange",
+          id: "921",
+        },
+        // Módulo 1022
+        {
+          standalone: true,
+          x: 407.75,
+          y: -55,
+          width: 23.375,
+          height: 55,
+          color: "orange",
+          id: "1022",
+        },
+
+        // Módulo 1328
+        {
+          standalone: true,
+          x: 407.125,
+          y: -82,
+          width: 23.375,
+          height: 27,
+          color: "orange",
+          id: "1026",
+        },
+
+        // Grupo Y naranja
+        // Grupo Y naranja 2
+        {
+          transform: "translate(460.5, -140.25)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.375,
+              height: 58.4375,
+              color: "orange",
+              id: "1029",
+            },
+            {
+              x: 23.375,
+              y: 0,
+              width: 23.375,
+              height: 58.4375,
+              color: "orange",
+              id: "1130",
+            },
+            {
+              x: 0,
+              y: 58.4375,
+              width: 23.375,
+              height: 23.375,
+              color: "orange",
+              id: "1025",
+            },
+            {
+              x: 23.375,
+              y: 58.4375,
+              width: 23.375,
+              height: 23.375,
+              color: "orange",
+              id: "1126",
+            },
+            {
+              x: 0,
+              y: 81.8125,
+              width: 23.375,
+              height: 58.4375,
+              color: "orange",
+              id: "1021",
+            },
+            {
+              x: 23.375,
+              y: 81.8125,
+              width: 23.375,
+              height: 58.4375,
+              color: "orange",
+              id: "1122",
+            },
+          ],
+        },
+        // Grupo B
+        {
+          transform: "translate(535, -141.244)",
+          modules: [
+            {
+              x: 0.25,
+              y: 0,
+              width: 46.25,
+              height: 58.9345,
+              color: "orange",
+              id: "1129",
+            },
+            {
+              x: 0,
+              y: 58.9345,
+              width: 23.375,
+              height: 23.375,
+              color: "orange",
+              id: "1025",
+            },
+            {
+              x: 23.375,
+              y: 58.9345,
+              width: 23.375,
+              height: 23.375,
+              color: "orange",
+              id: "1126",
+            },
+            {
+              x: 0.25,
+              y: 82.3095,
+              width: 46.25,
+              height: 58.9345,
+              color: "orange",
+              id: "1121",
+            },
+          ],
+        },
+        // Módulo 1228
+        {
+          standalone: true,
+          x: 610,
+          y: -141,
+          width: 23.375,
+          height: 33,
+          color: "yellow",
+          id: "1228",
+        },
+        // Módulo 1227
+        {
+          standalone: true,
+          x: 610,
+          y: -107.875,
+          width: 23.375,
+          height: 27,
+          color: "yellow",
+          id: "1227",
+        },
+        // Módulo 1225
+        {
+          standalone: true,
+          x: 610,
+          y: -80.5,
+          width: 23.375,
+          height: 27,
+          color: "yellow",
+          id: "1225",
+        },
+        // Módulo 1223
+        {
+          standalone: true,
+          x: 610,
+          y: -54,
+          width: 23.375,
+          height: 27,
+          color: "yellow",
+          id: "1223",
+        },
+        // Módulo 1221
+        {
+          standalone: true,
+          x: 610,
+          y: -27,
+          width: 23.375,
+          height: 27,
+          color: "yellow",
+          id: "1221",
+        },
+        // Módulo 1328
+        {
+          standalone: true,
+          x: 633,
+          y: -141,
+          width: 23.375,
+          height: 60,
+          color: "yellow",
+          id: "1328",
+        },
+        // Módulo 1326
+        {
+          standalone: true,
+          x: 633,
+          y: -80.5,
+          width: 23.375,
+          height: 27,
+          color: "yellow",
+          id: "1326",
+        },
+        // Módulo 1324
+        {
+          standalone: true,
+          x: 633,
+          y: -54,
+          width: 23.375,
+          height: 27,
+          color: "yellow",
+          id: "1324",
+        },
+        // Módulo 1322
+        {
+          standalone: true,
+          x: 633,
+          y: -27,
+          width: 23.375,
+          height: 27,
+          color: "yellow",
+          id: "1322",
+        },
+
+        // Grupo Y amarillo
+        {
+          transform: "translate(686, -140.25)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.375,
+              height: 58.4375,
+              color: "yellow",
+              id: "1329",
+            },
+            {
+              x: 23.375,
+              y: 0,
+              width: 23.375,
+              height: 58.4375,
+              color: "yellow",
+              id: "1430",
+            },
+            {
+              x: 0,
+              y: 58.4375,
+              width: 23.375,
+              height: 23.375,
+              color: "yellow",
+              id: "1325",
+            },
+            {
+              x: 23.375,
+              y: 58.4375,
+              width: 23.375,
+              height: 23.375,
+              color: "yellow",
+              id: "1426",
+            },
+            {
+              x: 0,
+              y: 81.8125,
+              width: 23.375,
+              height: 58.4375,
+              color: "yellow",
+              id: "1321",
+            },
+            {
+              x: 23.375,
+              y: 81.8125,
+              width: 23.375,
+              height: 58.4375,
+              color: "yellow",
+              id: "1422",
+            },
+          ],
+        },
+        // Grupo Y amarillo 2
+        {
+          transform: "translate(839, -140.25)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.375,
+              height: 58.4375,
+              color: "yellow",
+              id: "1529",
+            },
+            {
+              x: 23.375,
+              y: 0,
+              width: 23.375,
+              height: 58.4375,
+              color: "yellow",
+              id: "1630",
+            },
+            {
+              x: 0,
+              y: 58.4375,
+              width: 23.375,
+              height: 23.375,
+              color: "yellow",
+              id: "1525",
+            },
+            {
+              x: 23.375,
+              y: 58.4375,
+              width: 23.375,
+              height: 23.375,
+              color: "yellow",
+              id: "1626",
+            },
+            {
+              x: 0,
+              y: 81.8125,
+              width: 23.375,
+              height: 58.4375,
+              color: "yellow",
+              id: "1521",
+            },
+            {
+              x: 23.375,
+              y: 81.8125,
+              width: 23.375,
+              height: 58.4375,
+              color: "yellow",
+              id: "1622",
+            },
+          ],
+        },
+        // Grupo B amarillo
+        {
+          transform: "translate(915, -141.244)",
+          modules: [
+            {
+              x: 0.25,
+              y: 0,
+              width: 46.25,
+              height: 58.9345,
+              color: "yellow",
+              id: "1629",
+            },
+            {
+              x: 0,
+              y: 58.9345,
+              width: 23.375,
+              height: 23.375,
+              color: "yellow",
+              id: "1625",
+            },
+            {
+              x: 23.375,
+              y: 58.9345,
+              width: 23.375,
+              height: 23.375,
+              color: "yellow",
+              id: "1726",
+            },
+            {
+              x: 0.25,
+              y: 82.3095,
+              width: 46.25,
+              height: 58.9345,
+              color: "yellow",
+              id: "1621",
+            },
+          ],
+        },
+        // Grupo X amarillo
+        {
+          transform: "translate(990, -140.747)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.375,
+              height: 58.4375,
+              color: "yellow",
+              id: "1729",
+            },
+            {
+              x: 23.375,
+              y: 0,
+              width: 23.375,
+              height: 58.4375,
+              color: "yellow",
+              id: "1830",
+            },
+            {
+              x: 0,
+              y: 58.4375,
+              width: 23.375,
+              height: 23.375,
+              color: "yellow",
+              id: "1725",
+            },
+            {
+              x: 23.375,
+              y: 58.4375,
+              width: 23.375,
+              height: 23.375,
+              color: "yellow",
+              id: "1826",
+            },
+            {
+              x: 0.25,
+              y: 81.8125,
+              width: 46.25,
+              height: 58.9345,
+              color: "yellow",
+              id: "1721",
+            },
+          ],
+        },
+        // Grupo Ñ
+        {
+          transform: "translate(1068, -140.747)",
+          modules: [
+            {
+              x: 0.25,
+              y: 0,
+              width: 46.25,
+              height: 58.9345,
+              color: "yellow",
+              id: "1829",
+            },
+            {
+              x: 0.25,
+              y: 58.9345,
+              width: 46.25,
+              height: 81.8125,
+              color: "yellow",
+              id: "1821",
+            },
+          ],
+        },
+        // Grupo P
+        {
+          transform: "translate(1144, -140.747)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.375,
+              height: 76.8172,
+              color: "yellow",
+              id: "1929",
+            },
+            {
+              x: 0,
+              y: 76.8172,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "1921",
+            },
+          ],
+        },
+        // Grupo PR
+        {
+          transform: "translate(1167, -141)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.125,
+              height: 54.1158,
+              color: "yellow",
+              id: "2030",
+            },
+            {
+              x: 0,
+              y: 54.1158,
+              width: 23.375,
+              height: 23.375,
+              color: "yellow",
+              id: "2026",
+            },
+            {
+              x: 0,
+              y: 77.4908,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "2022",
+            },
+          ],
+        },
+        // Nuevo módulo al final del pasillo D
+        {
+          transform: "translate(1400, 0)", // Ajusta la posición según el final del pasillo
+          modules: [
+            {
+              x: -179,
+              y: -63.5,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "2021",
+            },
+          ],
+        },
+        {
+          transform: "translate(1400, 0)",
+          modules: [
+            {
+              x: -179,
+              y: -140.5,
+              width: 23.375,
+              height: 53.7,
+              color: "yellow",
+              id: "2029",
+            },
+          ],
+        },
+        {
+          transform: "translate(1400, 0)",
+          modules: [
+            {
+              x: -179,
+              y: -86.5,
+              width: 23.125,
+              height: 23.125,
+              color: "yellow",
+              id: "2025",
+            },
+          ],
+        },
+        {
+          transform: "translate(1400, 0)",
+          modules: [
+            {
+              x: -156,
+              y: -140.5,
+              width: 23.125,
+              height: 30.125,
+              color: "yellow",
+              id: "2130",
+            },
+          ],
+        },
+        {
+          transform: "translate(1400, 0)",
+          modules: [
+            {
+              x: -156,
+              y: -110.5,
+              width: 23.375,
+              height: 23.375,
+              color: "yellow",
+              id: "2128",
+            },
+          ],
+        },
+        // Nuevo módulo al final del pasillo D
+        {
+          transform: "translate(1400, 0)", // Ajusta la posición según el final del pasillo
+          modules: [
+            {
+              x: -156,
+              y: -87,
+              width: 23.375,
+              height: 87,
+              color: "yellow",
+              id: "2122",
+            },
+          ],
+        },
       ];
 
       // Definición de los grupos del pasillo E
@@ -1596,7 +2294,441 @@
             },
           ],
         },
-        // Resto de grupos...
+        // Grupo N verde
+        {
+          transform: "translate(76.25, -283)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "green",
+              id: "437",
+            },
+            {
+              x: 23.125,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "green",
+              id: "538",
+            },
+            {
+              x: 0,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "green",
+              id: "433",
+            },
+            {
+              x: 23.125,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "green",
+              id: "534",
+            },
+          ],
+        },
+        // Módulo publicitatalks
+        {
+          standalone: true,
+          x: 152.5,
+          y: -311.5189,
+          width: 135.5094,
+          height: 118.5189,
+          color: "",
+          id: "publicitatalks",
+        },
+        // Módulos 733/737
+        {
+          transform: "translate(305, -310.0898)",
+          modules: [
+            {
+              x: 0,
+              y: 90.2613,
+              width: 47.0879,
+              height: 27.0412,
+              color: "green",
+              id: "733",
+            },
+            {
+              x: 0,
+              y: 0,
+              width: 47.0879,
+              height: 117.2613,
+              color: "green",
+              id: "833",
+            },
+          ],
+        },
+        // Módulo 833
+        {
+          standalone: true,
+          x: 381.25,
+          y: -310.0898,
+          width: 46.125,
+          height: 117.0898,
+          color: "orange",
+          id: "933",
+        },
+        // Grupo N naranja
+        // Grupo N naranja 2
+        {
+          transform: "translate(457.5, -283)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "orange",
+              id: "941",
+            },
+            {
+              x: 23.125,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "orange",
+              id: "1138",
+            },
+            {
+              x: 0,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "orange",
+              id: "1033",
+            },
+            {
+              x: 23.125,
+              y: 26.505,
+              width: 23.125,
+              height: 33.4328,
+              color: "orange",
+              id: "1041",
+            },
+            {
+              x: 23.125,
+              y: 60,
+              width: 23.125,
+              height: 30,
+              color: "orange",
+              id: "1042",
+            },
+          ],
+        },
+        // Módulo 1133
+        {
+          standalone: true,
+          x: 533.75,
+          y: -310,
+          width: 46.125,
+          height: 117.0898,
+          color: "orange",
+          id: "1133",
+        },
+        // Grupo N amarillo
+        {
+          transform: "translate(609, -283)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "yellow",
+              id: "1237",
+            },
+            {
+              x: 23.125,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "yellow",
+              id: "1338",
+            },
+            {
+              x: 0,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "1233",
+            },
+            {
+              x: 23.125,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "1334",
+            },
+          ],
+        },
+        {
+          transform: "translate(687, -283)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "yellow",
+              id: "1337",
+            },
+            {
+              x: 23.125,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "yellow",
+              id: "1438",
+            },
+            {
+              x: 0,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "1333",
+            },
+            {
+              x: 23.125,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "1434",
+            },
+          ],
+        },
+
+        // Grupo S
+        {
+          transform: "translate(762.5, -256.2829)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.2855,
+              height: 31.6415,
+              color: "yellow",
+              id: "1437",
+            },
+            {
+              x: 0,
+              y: 31.6415,
+              width: 23.2855,
+              height: 31.6415,
+              color: "yellow",
+              id: "1433",
+            },
+            {
+              x: 23.2855,
+              y: 0,
+              width: 23.375,
+              height: 63.2829,
+              color: "yellow",
+              id: "1536",
+            },
+          ],
+        },
+        // Grupo N amarillo 2
+        {
+          transform: "translate(843.75, -283)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "yellow",
+              id: "1537",
+            },
+            {
+              x: 23.125,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "yellow",
+              id: "1638",
+            },
+            {
+              x: 0,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "1533",
+            },
+            {
+              x: 23.125,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "1634",
+            },
+          ],
+        },
+        // Grupo J
+        {
+          transform: "translate(917.661, -283)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.125,
+              height: 89.9378,
+              color: "yellow",
+              id: "1633",
+            },
+            {
+              x: 23.125,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "1734",
+            },
+            {
+              x: 23.125,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "yellow",
+              id: "1738",
+            },
+          ],
+        },
+        // Grupo N amarillo 3
+        {
+          transform: "translate(990.661, -283)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "yellow",
+              id: "1737",
+            },
+            {
+              x: 23.125,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "yellow",
+              id: "1838",
+            },
+            {
+              x: 0,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "1733",
+            },
+            {
+              x: 23.125,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "1834",
+            },
+          ],
+        },
+        // Grupo N amarillo 4
+        {
+          transform: "translate(1067.911, -283)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "yellow",
+              id: "1837",
+            },
+            {
+              x: 23.125,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "yellow",
+              id: "1938",
+            },
+            {
+              x: 0,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "1833",
+            },
+            {
+              x: 23.125,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "1934",
+            },
+          ],
+        },
+        // Módulo 1933
+        {
+          standalone: true,
+          x: 1144.161,
+          y: -310.0898,
+          width: 46.125,
+          height: 117.0898,
+          color: "yellow",
+          id: "1933",
+        },
+        // Grupo N amarillo 5
+        {
+          transform: "translate(1220.411, -283)",
+          modules: [
+            {
+              x: 0,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "yellow",
+              id: "1937",
+            },
+            {
+              x: 23.125,
+              y: 0,
+              width: 23.125,
+              height: 26.505,
+              color: "yellow",
+              id: "2038",
+            },
+            {
+              x: 0,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "1933",
+            },
+            {
+              x: 23.125,
+              y: 26.505,
+              width: 23.125,
+              height: 63.4328,
+              color: "yellow",
+              id: "2034",
+            },
+          ],
+        },
       ];
 
       // Variables globales
@@ -1605,19 +2737,27 @@
       let position = { x: 0, y: 0 };
       let isDragging = false;
       let startX, startY, startPosX, startPosY;
-      let isLandscape = false;
+      let isLandscapeMode = false;
       let mapInitialized = false;
-      let touchStartX, touchStartY;
+      let landscapeContainer = null;
 
       // Elementos DOM
-      let mapContent,
-        mapScroll,
-        tooltip,
-        standInfo,
-        zoomLevelEl,
-        searchForm,
-        searchInput;
-      let container, interactiveMapContainer, rotateButton;
+      const mapContent = document.getElementById("map-content");
+      const mapScroll = document.getElementById("map-scroll");
+      const tooltip = document.getElementById("tooltip");
+      const standInfo = document.getElementById("stand-info");
+      const zoomLevelEl = document.getElementById("zoom-level");
+      const searchForm = document.getElementById("map-search-form");
+      const searchInput = document.getElementById("map-search-input");
+      const rotateButton = document.getElementById("rotate-button");
+      const interactiveMapContainer = document.getElementById(
+        "interactive-map-container"
+      );
+      const toggleMapBtn = document.getElementById("toggle-map-btn");
+      const modulesContainer = document.getElementById("modules-container");
+      const moduleSearchInput = document.getElementById("module-search");
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const backToTop = document.getElementById("back-to-top");
 
       // Función para crear un elemento SVG
       function createSVGElement(tag) {
@@ -1785,7 +2925,6 @@
           rect.setAttribute("width", module.width);
           rect.setAttribute("height", module.height);
           rect.setAttribute("class", `module ${module.color}`);
-          rect.setAttribute("data-stand-id", module.i`module ${module.color}`);
           rect.setAttribute("data-stand-id", module.id);
 
           const text = createSVGElement("text");
@@ -1830,17 +2969,9 @@
         textLVertical.setAttribute("class", "stand-label");
         textLVertical.textContent = "104";
 
-        const textLHorizontal = createSVGElement("text");
-        textLHorizontal.setAttribute("x", 5);
-        textLHorizontal.setAttribute("y", 325);
-        textLHorizontal.setAttribute("text-anchor", "middle");
-        textLHorizontal.setAttribute("class", "stand-label");
-        textLHorizontal.textContent = "104";
-
         moduleL.appendChild(rectLVertical);
         moduleL.appendChild(rectLHorizontal);
         moduleL.appendChild(textLVertical);
-        moduleL.appendChild(textLHorizontal);
         bottomModulesEl.appendChild(moduleL);
 
         // Otros módulos inferiores
@@ -1979,142 +3110,337 @@
       }
 
       // Función para mostrar el tooltip
-      function showTooltip(e, standId) {
-        if (isMobileDevice()) return; // No mostrar tooltips en dispositivos móviles
-
+      function showTooltip(e, standId, container = document) {
         const rect = e.target.getBoundingClientRect();
-        const svgRect = document
-          .getElementById("expo-map")
-          .getBoundingClientRect();
+        const tooltipEl = container.querySelector(".tooltip");
 
-        tooltip.textContent = `Stand ${standId}`;
-        tooltip.style.left = `${rect.left + rect.width / 2}px`;
-        tooltip.style.top = `${rect.top - 40}px`;
-        tooltip.style.opacity = "1";
-        tooltip.style.visibility = "visible";
-        tooltip.style.transform = "translateX(-50%) translateY(0)";
+        if (!tooltipEl) return;
+
+        tooltipEl.textContent = `Stand ${standId}`;
+        tooltipEl.style.left = `${rect.left + rect.width / 2}px`;
+        tooltipEl.style.top = `${rect.top - 40}px`;
+        tooltipEl.style.opacity = "1";
+        tooltipEl.style.visibility = "visible";
+        tooltipEl.style.transform = "translateX(-50%) translateY(0)";
       }
 
       // Función para ocultar el tooltip
-      function hideTooltip() {
-        tooltip.style.opacity = "0";
-        tooltip.style.visibility = "hidden";
-        tooltip.style.transform = "translateX(-50%) translateY(10px)";
+      function hideTooltip(container = document) {
+        const tooltipEl = container.querySelector(".tooltip");
+        if (!tooltipEl) return;
+
+        tooltipEl.style.opacity = "0";
+        tooltipEl.style.visibility = "hidden";
+        tooltipEl.style.transform = "translateX(-50%) translateY(10px)";
       }
 
       // Función para seleccionar un stand
-      function selectStand(standId) {
+      function selectStand(standId, container = document) {
         // Deseleccionar el stand anterior
         if (selectedStand) {
-          const prevStandElements = document.querySelectorAll(
+          const prevStandElements = container.querySelectorAll(
             `[data-stand-id="${selectedStand}"]`
           );
           prevStandElements.forEach((el) => {
             el.classList.remove("selected");
+            el.classList.remove("blinking");
           });
         }
 
         // Seleccionar el nuevo stand
         selectedStand = standId;
-        const standElements = document.querySelectorAll(
+        const standElements = container.querySelectorAll(
           `[data-stand-id="${standId}"]`
         );
         standElements.forEach((el) => {
           el.classList.add("selected");
+          el.classList.add("blinking");
         });
 
         // Actualizar la información del stand
-        standInfo.innerHTML = `
-          <p class="selected-stand">Stand: ${standId}</p>
-          <p class="info-text">Haz clic en un stand para ver más detalles</p>
-        `;
+        const standInfoEl = container.querySelector("#stand-info");
+        if (standInfoEl) {
+          standInfoEl.innerHTML = `
+            <p class="selected-stand">Stand: ${standId}</p>
+            <p class="info-text">Haz clic en un stand para ver más detalles</p>
+          `;
+        }
 
         // Desplazarse al stand seleccionado
-        const standElement = document.querySelector(
+        const standElement = container.querySelector(
           `[data-stand-id="${standId}"]`
         );
         if (standElement) {
-          const standRect = standElement.getBoundingClientRect();
-          const mapRect = mapScroll.getBoundingClientRect();
+          const mapScrollEl = container.querySelector(".map-scroll");
+          const mapContentEl = container.querySelector(".map-content");
 
-          const centerX = standRect.left + standRect.width / 2 - mapRect.left;
-          const centerY = standRect.top + standRect.height / 2 - mapRect.top;
+          if (mapScrollEl && mapContentEl) {
+            const standRect = standElement.getBoundingClientRect();
+            const mapRect = mapScrollEl.getBoundingClientRect();
 
-          position.x = (mapScroll.clientWidth / 2 - centerX) / zoomLevel;
-          position.y = (mapScroll.clientHeight / 2 - centerY) / zoomLevel;
+            const centerX = standRect.left + standRect.width / 2 - mapRect.left;
+            const centerY = standRect.top + standRect.height / 2 - mapRect.top;
 
-          updateMapTransform();
+            const currentPosition = {
+              x: (mapScrollEl.clientWidth / 2 - centerX) / zoomLevel,
+              y: (mapScrollEl.clientHeight / 2 - centerY) / zoomLevel,
+            };
+
+            mapContentEl.style.transform = `scale(${zoomLevel}) translate(${currentPosition.x}px, ${currentPosition.y}px)`;
+
+            // Actualizar la posición global si estamos en el contenedor principal
+            if (container === document) {
+              position = currentPosition;
+            }
+          }
         }
       }
 
       // Función para actualizar la transformación del mapa
-      function updateMapTransform() {
-        mapContent.style.transform = `scale(${zoomLevel}) translate(${position.x}px, ${position.y}px)`;
-        zoomLevelEl.textContent = `${Math.round(zoomLevel * 100)}%`;
+      function updateMapTransform(container = document) {
+        const mapContentEl = container.querySelector(".map-content");
+        const zoomLevelEl = container.querySelector(".zoom-level");
+
+        if (mapContentEl) {
+          mapContentEl.style.transform = `scale(${zoomLevel}) translate(${position.x}px, ${position.y}px)`;
+        }
+
+        if (zoomLevelEl) {
+          zoomLevelEl.textContent = `${Math.round(zoomLevel * 100)}%`;
+        }
       }
 
-      // Función para detectar si es un dispositivo móvil
-      function isMobileDevice() {
-        return (
-          /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-            navigator.userAgent
-          ) || window.innerWidth < 768
+      // Función para inicializar los eventos del mapa
+      function initMapEvents(container = document) {
+        const mapScrollEl = container.querySelector(".map-scroll");
+        const mapContentEl = container.querySelector(".map-content");
+        const zoomInBtn = container.querySelector("#zoom-in");
+        const zoomOutBtn = container.querySelector("#zoom-out");
+        const zoomResetBtn = container.querySelector("#zoom-reset");
+        const searchFormEl = container.querySelector("#map-search-form");
+        const searchInputEl = container.querySelector("#map-search-input");
+        const modules = container.querySelectorAll(".module");
+
+        if (!mapScrollEl || !mapContentEl) return;
+
+        // Agregar eventos a los módulos
+        modules.forEach((module) => {
+          const standId = module.getAttribute("data-stand-id");
+
+          module.addEventListener("click", () => {
+            selectStand(standId, container);
+          });
+
+          module.addEventListener("mouseenter", (e) => {
+            showTooltip(e, standId, container);
+          });
+
+          module.addEventListener("mouseleave", () => {
+            hideTooltip(container);
+          });
+
+          // Agregar soporte para dispositivos táctiles
+          module.addEventListener("touchstart", (e) => {
+            e.preventDefault();
+            selectStand(standId, container);
+          });
+        });
+
+        // Configurar el zoom
+        if (zoomInBtn) {
+          zoomInBtn.addEventListener("click", () => {
+            zoomLevel = Math.min(zoomLevel + 0.2, 2);
+            updateMapTransform(container);
+          });
+        }
+
+        if (zoomOutBtn) {
+          zoomOutBtn.addEventListener("click", () => {
+            zoomLevel = Math.max(zoomLevel - 0.2, 0.5);
+            updateMapTransform(container);
+          });
+        }
+
+        if (zoomResetBtn) {
+          zoomResetBtn.addEventListener("click", () => {
+            zoomLevel = 1;
+            position = { x: 0, y: 0 };
+            updateMapTransform(container);
+          });
+        }
+
+        // Configurar el arrastre del mapa
+        mapScrollEl.addEventListener("mousedown", (e) => {
+          if (e.button !== 0) return; // Solo botón izquierdo
+
+          isDragging = true;
+          startX = e.clientX;
+          startY = e.clientY;
+          startPosX = position.x;
+          startPosY = position.y;
+          mapScrollEl.style.cursor = "grabbing";
+
+          e.preventDefault();
+        });
+
+        mapScrollEl.addEventListener(
+          "touchstart",
+          (e) => {
+            if (e.touches.length !== 1) return;
+
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            startPosX = position.x;
+            startPosY = position.y;
+
+            e.preventDefault();
+          },
+          { passive: false }
         );
+
+        // Configurar el movimiento del mapa
+        const handleMouseMove = (e) => {
+          if (!isDragging) return;
+
+          const dx = (e.clientX - startX) * 0.5;
+          const dy = (e.clientY - startY) * 0.5;
+
+          position.x = startPosX + dx / zoomLevel;
+          position.y = startPosY + dy / zoomLevel;
+
+          updateMapTransform(container);
+        };
+
+        const handleTouchMove = (e) => {
+          if (!isDragging || e.touches.length !== 1) return;
+
+          const dx = (e.touches[0].clientX - startX) * 0.5;
+          const dy = (e.touches[0].clientY - startY) * 0.5;
+
+          position.x = startPosX + dx / zoomLevel;
+          position.y = startPosY + dy / zoomLevel;
+
+          updateMapTransform(container);
+
+          e.preventDefault();
+        };
+
+        const handleMouseUp = () => {
+          isDragging = false;
+          if (mapScrollEl) {
+            mapScrollEl.style.cursor = "grab";
+          }
+        };
+
+        // Agregar eventos al documento o al contenedor
+        if (container === document) {
+          document.addEventListener("mousemove", handleMouseMove);
+          document.addEventListener("touchmove", handleTouchMove, {
+            passive: false,
+          });
+          document.addEventListener("mouseup", handleMouseUp);
+          document.addEventListener("touchend", handleMouseUp);
+        } else {
+          container.addEventListener("mousemove", handleMouseMove);
+          container.addEventListener("touchmove", handleTouchMove, {
+            passive: false,
+          });
+          container.addEventListener("mouseup", handleMouseUp);
+          container.addEventListener("touchend", handleMouseUp);
+        }
+
+        // Configurar la búsqueda
+        if (searchFormEl && searchInputEl) {
+          searchFormEl.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const searchValue = searchInputEl.value.trim();
+
+            if (searchValue) {
+              // Buscar el stand por ID
+              const standElements = container.querySelectorAll(
+                `[data-stand-id="${searchValue}"]`
+              );
+              if (standElements.length > 0) {
+                selectStand(searchValue, container);
+              } else {
+                alert(`Stand ${searchValue} no encontrado.`);
+              }
+            }
+          });
+        }
+
+        // Modificar el evento de clic para detener el parpadeo pero mantener la selección
+        modules.forEach((module) => {
+          module.addEventListener("click", (e) => {
+            const standId = module.getAttribute("data-stand-id");
+            selectStand(standId, container);
+
+            // Detener el parpadeo pero mantener la selección
+            const standElements = container.querySelectorAll(
+              `[data-stand-id="${standId}"]`
+            );
+            standElements.forEach((el) => {
+              el.classList.remove("blinking");
+            });
+          });
+        });
       }
 
-      // Función para alternar el modo horizontal
+      // Función para activar el modo horizontal
       function toggleLandscapeMode() {
-        isLandscape = !isLandscape;
+        if (!isLandscapeMode) {
+          // Activar modo horizontal
+          landscapeContainer = document.createElement("div");
+          landscapeContainer.id = "landscape-container";
+          landscapeContainer.className = "landscape-mode";
 
-        if (isLandscape) {
-          container.classList.add("landscape-mode");
-          rotateButton.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rotate-icon">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="9" y1="3" x2="9" y2="21"></line>
-            </svg>
-          `;
+          // Clonar el contenido del mapa
+          const mapContainerClone = interactiveMapContainer.cloneNode(true);
+          mapContainerClone.style.display = "block";
 
-          // Ajustar el zoom para mejor visualización en modo horizontal
-          zoomLevel = Math.min(1.2, zoomLevel);
-          updateMapTransform();
+          // Agregar botón de cierre
+          const closeButton = document.createElement("button");
+          closeButton.className = "close-landscape";
+          closeButton.innerHTML = "×";
+          closeButton.onclick = function () {
+            // Eliminar el contenedor de modo horizontal
+            document.body.removeChild(landscapeContainer);
+            isLandscapeMode = false;
+            document.body.style.overflow = "";
+          };
 
-          // Scroll al centro del mapa
-          setTimeout(() => {
-            mapScroll.scrollTo(
-              (mapContent.scrollWidth - mapScroll.clientWidth) / 2,
-              (mapContent.scrollHeight - mapScroll.clientHeight) / 2
-            );
-          }, 100);
+          landscapeContainer.appendChild(closeButton);
+          landscapeContainer.appendChild(mapContainerClone);
+          document.body.appendChild(landscapeContainer);
+
+          isLandscapeMode = true;
+          document.body.style.overflow = "hidden";
+
+          // Inicializar eventos en el modo horizontal
+          initMapEvents(landscapeContainer);
+
+          // Sincronizar el estado actual
+          updateMapTransform(landscapeContainer);
+
+          // Si hay un stand seleccionado, mostrarlo también en el modo horizontal
+          if (selectedStand) {
+            selectStand(selectedStand, landscapeContainer);
+          }
         } else {
-          container.classList.remove("landscape-mode");
-          rotateButton.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rotate-icon">
-              <path d="M3 2v7h7"></path>
-              <path d="M21 12A9 9 0 0 0 6 5.3L3 8"></path>
-              <path d="M21 22v-7h-7"></path>
-              <path d="M3 12a9 9 0 0 0 15 6.7l3-2.7"></path>
-            </svg>
-          `;
+          // Desactivar modo horizontal
+          if (landscapeContainer) {
+            document.body.removeChild(landscapeContainer);
+            landscapeContainer = null;
+          }
+
+          isLandscapeMode = false;
+          document.body.style.overflow = "";
         }
       }
 
       // Función para inicializar el mapa
       function initMap() {
-        // Obtener referencias a elementos DOM
-        mapContent = document.getElementById("map-content");
-        mapScroll = document.getElementById("map-scroll");
-        tooltip = document.getElementById("tooltip");
-        standInfo = document.getElementById("stand-info");
-        zoomLevelEl = document.getElementById("zoom-level");
-        searchForm = document.getElementById("map-search-form");
-        searchInput = document.getElementById("map-search-input");
-        container = document.querySelector(".container");
-        rotateButton = document.getElementById("rotate-map-btn");
-        interactiveMapContainer = document.getElementById(
-          "interactive-map-container"
-        );
-
         // Generar los elementos del mapa
         generateStandRows();
         generateLeftModules();
@@ -2124,158 +3450,13 @@
         generatePasilloD();
         generatePasilloE();
 
-        // Agregar eventos a los módulos
-        const modules = document.querySelectorAll(".module");
-        modules.forEach((module) => {
-          const standId = module.getAttribute("data-stand-id");
-
-          module.addEventListener("click", () => {
-            selectStand(standId);
-          });
-
-          module.addEventListener("mouseenter", (e) => {
-            showTooltip(e, standId);
-          });
-
-          module.addEventListener("mouseleave", hideTooltip);
-        });
-
-        // Configurar el zoom
-        document.getElementById("zoom-in").addEventListener("click", () => {
-          zoomLevel = Math.min(zoomLevel + 0.2, 2);
-          updateMapTransform();
-        });
-
-        document.getElementById("zoom-out").addEventListener("click", () => {
-          zoomLevel = Math.max(zoomLevel - 0.2, 0.5);
-          updateMapTransform();
-        });
-
-        document.getElementById("zoom-reset").addEventListener("click", () => {
-          zoomLevel = 1;
-          position = { x: 0, y: 0 };
-          updateMapTransform();
-        });
-
-        // Configurar el arrastre del mapa (mouse)
-        mapScroll.addEventListener("mousedown", (e) => {
-          if (e.button !== 0) return; // Solo botón izquierdo
-
-          isDragging = true;
-          startX = e.clientX;
-          startY = e.clientY;
-          startPosX = position.x;
-          startPosY = position.y;
-          mapScroll.style.cursor = "grabbing";
-
-          e.preventDefault();
-        });
-
-        document.addEventListener("mousemove", (e) => {
-          if (!isDragging) return;
-
-          const dx = (e.clientX - startX) * 0.5;
-          const dy = (e.clientY - startY) * 0.5;
-
-          position.x = startPosX + dx / zoomLevel;
-          position.y = startPosY + dy / zoomLevel;
-
-          updateMapTransform();
-        });
-
-        document.addEventListener("mouseup", () => {
-          isDragging = false;
-          mapScroll.style.cursor = "grab";
-        });
-
-        // Configurar eventos táctiles para dispositivos móviles
-        mapScroll.addEventListener(
-          "touchstart",
-          (e) => {
-            if (e.touches.length === 1) {
-              isDragging = true;
-              startX = e.touches[0].clientX;
-              startY = e.touches[0].clientY;
-              startPosX = position.x;
-              startPosY = position.y;
-
-              // Guardar posición inicial para detectar taps
-              touchStartX = startX;
-              touchStartY = startY;
-            }
-          },
-          { passive: false }
-        );
-
-        mapScroll.addEventListener(
-          "touchmove",
-          (e) => {
-            if (!isDragging || e.touches.length !== 1) return;
-
-            const dx = (e.touches[0].clientX - startX) * 0.5;
-            const dy = (e.touches[0].clientY - startY) * 0.5;
-
-            position.x = startPosX + dx / zoomLevel;
-            position.y = startPosY + dy / zoomLevel;
-
-            updateMapTransform();
-
-            // Prevenir scroll de la página si estamos arrastrando el mapa
-            e.preventDefault();
-          },
-          { passive: false }
-        );
-
-        mapScroll.addEventListener("touchend", (e) => {
-          // Detectar si fue un tap (clic) o un arrastre
-          const endX = e.changedTouches[0].clientX;
-          const endY = e.changedTouches[0].clientY;
-
-          const deltaX = Math.abs(endX - touchStartX);
-          const deltaY = Math.abs(endY - touchStartY);
-
-          // Si el movimiento fue mínimo, considerarlo un tap
-          if (deltaX < 10 && deltaY < 10) {
-            // Buscar el elemento en la posición del tap
-            const element = document.elementFromPoint(endX, endY);
-            if (element && element.classList.contains("module")) {
-              const standId = element.getAttribute("data-stand-id");
-              selectStand(standId);
-            }
-          }
-
-          isDragging = false;
-        });
-
-        // Configurar la búsqueda
-        searchForm.addEventListener("submit", (e) => {
-          e.preventDefault();
-          const searchValue = searchInput.value.trim();
-
-          if (searchValue) {
-            // Buscar el stand por ID
-            const standElements = document.querySelectorAll(
-              `[data-stand-id="${searchValue}"]`
-            );
-            if (standElements.length > 0) {
-              selectStand(searchValue);
-            } else {
-              alert(`Stand ${searchValue} no encontrado.`);
-            }
-          }
-        });
+        // Inicializar eventos del mapa
+        initMapEvents();
 
         // Configurar el botón de rotación
         rotateButton.addEventListener("click", toggleLandscapeMode);
-
-        // Ajustar zoom inicial para dispositivos móviles
-        if (isMobileDevice()) {
-          zoomLevel = 0.8;
-          updateMapTransform();
-        }
       }
 
-      // Código para el listado de módulos
       // Todos los módulos del mapa original
       const allModules = [
         // Módulos de la cuadrícula principal (A, B, C)
@@ -2293,7 +3474,7 @@
           group: "grid",
           row: "A",
           col: 1,
-          info: "Información del expositor",
+          info: "Space Drone Show-",
         },
         {
           id: "515",
@@ -2301,7 +3482,7 @@
           group: "grid",
           row: "A",
           col: 2,
-          info: "TROLISA-FABRICACION DE MATERIAL POP",
+          info: "TROLISA-Fabricacion de Material POP",
         },
         {
           id: "615",
@@ -2317,7 +3498,7 @@
           group: "grid",
           row: "A",
           col: 4,
-          info: "Información del expositor",
+          info: "KUSCO SUSTENTABLE-MARKETING MEDIOS , EVENT MARKETING, RETAIL Y MERCHANDISING",
         },
         {
           id: "815",
@@ -2431,8 +3612,304 @@
           col: 18,
           info: "Información del expositor",
         },
-        // Muchos más módulos...
-        // Añadiendo solo algunos para que el código no sea demasiado largo
+
+        {
+          id: "409",
+          color: "red",
+          group: "grid",
+          row: "B",
+          col: 1,
+          info: "C MEDIA FILMS",
+        },
+        {
+          id: "509",
+          color: "green",
+          group: "grid",
+          row: "B",
+          col: 2,
+          info: "Información del expositor",
+        },
+        {
+          id: "609",
+          color: "green",
+          group: "grid",
+          row: "B",
+          col: 3,
+          info: "Grupo+Epacio",
+        },
+        {
+          id: "709",
+          color: "green",
+          group: "grid",
+          row: "B",
+          col: 4,
+          info: "Ledup-Ofrecemos una solución perfecta para crear exhibiciones cautivadoras en expos, puntos de venta, congresos y más.",
+        },
+        {
+          id: "809",
+          color: "green",
+          group: "grid",
+          row: "B",
+          col: 5,
+          info: "Información del expositor",
+        },
+        {
+          id: "909",
+          color: "orange",
+          group: "grid",
+          row: "B",
+          col: 6,
+          info: "ExpoTouch",
+        },
+        {
+          id: "1005",
+          color: "orange",
+          group: "grid",
+          row: "B",
+          col: 7,
+          info: "Información del expositor",
+        },
+        {
+          id: "1105",
+          color: "orange",
+          group: "grid",
+          row: "B",
+          col: 8,
+          info: "PlottersMX-Empresa especializada en venta, distribuicion y exportacion de equipos profesionales de impresion destinados a la industria publicitaria",
+        },
+        {
+          id: "1205",
+          color: "orange",
+          group: "grid",
+          row: "B",
+          col: 9,
+          info: "Información del expositor",
+        },
+        {
+          id: "1210",
+          color: "yellow",
+          group: "grid",
+          row: "B",
+          col: 10,
+          info: "Boye Laser",
+        },
+        {
+          id: "1309",
+          color: "yellow",
+          group: "grid",
+          row: "B",
+          col: 11,
+          info: "Información del expositor",
+        },
+        {
+          id: "1409",
+          color: "yellow",
+          group: "grid",
+          row: "B",
+          col: 12,
+          info: "BigBang",
+        },
+        {
+          id: "1509",
+          color: "yellow",
+          group: "grid",
+          row: "B",
+          col: 13,
+          info: "Promoopcion",
+        },
+        {
+          id: "1609",
+          color: "yellow",
+          group: "grid",
+          row: "B",
+          col: 14,
+          info: "Innovation Line",
+        },
+        {
+          id: "1709",
+          color: "yellow",
+          group: "grid",
+          row: "B",
+          col: 15,
+          info: "Promo Life",
+        },
+        {
+          id: "1809",
+          color: "yellow",
+          group: "grid",
+          row: "B",
+          col: 16,
+          info: "Promo Life",
+        },
+        {
+          id: "1905",
+          color: "yellow",
+          group: "grid",
+          row: "B",
+          col: 17,
+          info: "Generando Ideas",
+        },
+        {
+          id: "2009",
+          color: "yellow",
+          group: "grid",
+          row: "B",
+          col: 18,
+          info: "Información del expositor",
+        },
+
+        {
+          id: "405",
+          color: "red",
+          group: "grid",
+          row: "C",
+          col: 1,
+          info: "FRABEREXPO",
+        },
+        {
+          id: "505",
+          color: "green",
+          group: "grid",
+          row: "C",
+          col: 2,
+          info: "Información del expositor",
+        },
+        {
+          id: "605",
+          color: "green",
+          group: "grid",
+          row: "C",
+          col: 3,
+          info: "Red Pepper Studio-Agencia de publicidad 360° especiallizada en experienciass al consumidor",
+        },
+        {
+          id: "705",
+          color: "green",
+          group: "grid",
+          row: "C",
+          col: 4,
+          info: "Color Publicitario Solucion Creativa-Somos una agencia publicitaria especializada en la fabricación de artículos para activaciones de marca ",
+        },
+        {
+          id: "805",
+          color: "green",
+          group: "grid",
+          row: "C",
+          col: 5,
+          info: "Printer House",
+        },
+        {
+          id: "905",
+          color: "orange",
+          group: "grid",
+          row: "C",
+          col: 6,
+          info: "ABC Displays",
+        },
+        {
+          id: "1005",
+          color: "orange",
+          group: "grid",
+          row: "C",
+          col: 7,
+          info: "Información del expositor",
+        },
+        {
+          id: "1105",
+          color: "orange",
+          group: "grid",
+          row: "C",
+          col: 8,
+          info: "Información del expositor",
+        },
+        {
+          id: "1205",
+          color: "orange",
+          group: "grid",
+          row: "C",
+          col: 9,
+          info: "Información del expositor",
+        },
+        {
+          id: "1206",
+          color: "yellow",
+          group: "grid",
+          row: "C",
+          col: 10,
+          info: "NORDAY",
+        },
+        {
+          id: "1305",
+          color: "yellow",
+          group: "grid",
+          row: "C",
+          col: 11,
+          info: "Información del expositor",
+        },
+        {
+          id: "1405",
+          color: "yellow",
+          group: "grid",
+          row: "C",
+          col: 12,
+          info: "Gorras DKPS",
+        },
+        {
+          id: "1505",
+          color: "yellow",
+          group: "grid",
+          row: "C",
+          col: 13,
+          info: "CDO Promocionales",
+        },
+        {
+          id: "1605",
+          color: "yellow",
+          group: "grid",
+          row: "C",
+          col: 14,
+          info: "Stormtech",
+        },
+        {
+          id: "1705",
+          color: "yellow",
+          group: "grid",
+          row: "C",
+          col: 15,
+          info: "Hugo Boss",
+        },
+        {
+          id: "1805",
+          color: "yellow",
+          group: "grid",
+          row: "C",
+          col: 16,
+          info: "Grupo Bibo",
+        },
+        {
+          id: "1905",
+          color: "yellow",
+          group: "grid",
+          row: "C",
+          col: 17,
+          info: "Generando Ideas",
+        },
+        {
+          id: "2005",
+          color: "yellow",
+          group: "grid",
+          row: "C",
+          col: 18,
+          info: "Nottorius",
+        },
+
+        // Módulos del grupo X
+        {
+          id: "321",
+          color: "red",
+          group: "xgroup",
+          info: "Grupo Rubrica-Diseño y fabricacion de modulos portatiles para el punto de venta.",
+        },
         {
           id: "325",
           color: "red",
@@ -2440,19 +3917,1089 @@
           info: "MYAPP - Empresa de desarrollo de aplicaciones móviles",
           highlight: true,
         },
+        {
+          id: "425",
+          color: "green",
+          group: "ygroup",
+          info: "NOMOPRO-AGENCIA DE CONTENIDOS AUDIOVISUALES Y TECNOLOGIAS HOLOGRAFICAS",
+        },
+        {
+          id: "426",
+          color: "red",
+          group: "xgroup",
+          info: "Buo Tech-Agencia de marketing digital",
+        },
+        {
+          id: "329",
+          color: "red",
+          group: "xgroup",
+          info: "Frank Wadskier-Relaciones públicas, marketing digital y cyberseguridad",
+        },
+        {
+          id: "430",
+          color: "red",
+          group: "xgroup",
+          info: "Craft Marketing Group-",
+        },
+
+        // Módulos del grupo Y (primer grupo)
+        {
+          id: "429",
+          color: "green",
+          group: "ygroup",
+          info: "Power Led-",
+        },
+        {
+          id: "530",
+          color: "green",
+          group: "ygroup",
+          info: "ROJOPOP-Diseño y fabricación publicidad para el punto de venta",
+        },
+        {
+          id: "526",
+          color: "green",
+          group: "ygroup",
+          info: "Market Beat-Tecnología para espacios inteligentes en retail y digital singage",
+        },
+        {
+          id: "421",
+          color: "green",
+          group: "ygroup",
+          info: "Ratpack-RATPACK ES UNA AGENCIA ESPECIALIZADA EN LA CREACIÓN DE TOTAL BRAND EXPERIENCES",
+        },
+        {
+          id: "522",
+          color: "green",
+          group: "ygroup",
+          info: "ODOO-ODOO OFRECE UN SOFTWARE DE GESTIÓN EMPRESARIAL TODO-EN-UNO",
+        },
+
+        // Módulos del grupo A (segundo grupo)
+        {
+          id: "529",
+          color: "green",
+          group: "agroup",
+          info: "Hit Mercadotecnia y Eventos-PRODUCTORA DE EVENTOS, CONGRESOS Y ESCENARIOS DE CONFERENCIAS PARA EXPOS",
+        },
+        {
+          id: "525",
+          color: "green",
+          group: "agroup",
+          info: "One Media- soluciones y asesorías tecnológicas de transmisión, media, audio, video, saas, producción y servicios en la nybe para enfrentar los desafíos de cada cliente",
+        },
+        {
+          id: "626",
+          color: "green",
+          group: "agroup",
+          info: "Backtrack-BACKTRACK IS YOUR AI-POWERED BOOTH ASSISTANT FOR TRADE SHOWS AND MEETINGS",
+        },
+        {
+          id: "521",
+          color: "green",
+          group: "agroup",
+          info: "Kobbox Technologies-",
+        },
+        {
+          id: "622",
+          color: "green",
+          group: "agroup",
+          info: "Grupo Expomex-Ofrecemos soluciones visuales innovadoras en digital signage, señalización, exhibidores, displays portátiles, mobiliario industrial y mucho más",
+        },
+
+        // Módulos del grupo A (tercer grupo)
+        {
+          id: "621",
+          color: "green",
+          group: "agroup",
+          info: "YC Light Mexico-Venta de ilumianción, video y audio profesional",
+        },
+        {
+          id: "625",
+          color: "green",
+          group: "agroup",
+          info: "Cadgrafics-Comercialización de software y hardware",
+        },
+        {
+          id: "700",
+          color: "green",
+          group: "ygroup",
+          info: "LDM-Disribuidora de materiales plásticos y equipos de soldadura plástica, para el sellado de lonas",
+        },
+        {
+          id: "726",
+          color: "green",
+          group: "agroup",
+          info: "Movid Dot-DISEÑO DE EXPERIENCIAS INTEGRALES PARA MARCAS QUE BUSCAN CONECTAR, TRANSFORMAR Y CRECER, INTEGRANDO ESTRATEGIA, CREATIVIDAD Y TECNOLOGIA",
+        },
+        {
+          id: "629",
+          color: "green",
+          group: "agroup",
+          info: "Macstore Empresarial-MACSTORE EMPRESARIAL ES UNA DIVISIÓN DE MACSTORE DEDICADA A OFRECER SOLUCIONES TECNOLÓGICAS BASADAS EN PRODUCTOS APPLE PARA EMPRESAS DE TODOS LOS TAMAÑOS EN MÉXICO",
+        },
+        {
+          id: "730",
+          color: "green",
+          group: "agroup",
+          info: "Renta Tu Stand-Renta de stands de aluminio y madera para expos. renta y ejecución de stands institucionales para expos",
+        },
+
+        // Módulos del grupo Y (tercer grupo)
+        {
+          id: "729",
+          color: "green",
+          group: "ygroup",
+          info: "Renta Tu Stand",
+        },
+        {
+          id: "830",
+          color: "green",
+          group: "ygroup",
+          info: "Logotap",
+        },
+        {
+          id: "725",
+          color: "green",
+          group: "ygroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "826",
+          color: "green",
+          group: "ygroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "721",
+          color: "green",
+          group: "ygroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "922",
+          color: "green",
+          group: "ygroup",
+          info: "Creativa Lab",
+        },
+
+        // Módulo 821
+        {
+          id: "821",
+          color: "orange",
+          group: "single",
+          info: "Sublima",
+        },
+
+        // Módulos del grupo Y (quinto grupo)
+        {
+          id: "929",
+          color: "orange",
+          group: "ygroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1030",
+          color: "orange",
+          group: "ygroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "925",
+          color: "orange",
+          group: "ygroup",
+          info: "Dinagraf",
+        },
+        {
+          id: "1026",
+          color: "orange",
+          group: "ygroup",
+          info: "Revista Enlace Grafico",
+        },
+        {
+          id: "921",
+          color: "orange",
+          group: "ygroup",
+          info: "HDP Solutions",
+        },
+        {
+          id: "1022",
+          color: "orange",
+          group: "ygroup",
+          info: "Mexico Makers",
+        },
+
+        // Módulos del grupo Y (sexto grupo)
+        {
+          id: "1029",
+          color: "orange",
+          group: "ygroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1130",
+          color: "orange",
+          group: "ygroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1025",
+          color: "orange",
+          group: "ygroup",
+          info: "El Vendedor Grafico",
+        },
+        {
+          id: "1126",
+          color: "orange",
+          group: "ygroup",
+          info: "Clarity Color",
+        },
+        {
+          id: "1021",
+          color: "orange",
+          group: "ygroup",
+          info: "Boxibag Digital",
+        },
+        {
+          id: "1122",
+          color: "orange",
+          group: "ygroup",
+          info: "Tubelite",
+        },
+
+        // Módulos del grupo B
+        {
+          id: "1129",
+          color: "orange",
+          group: "bgroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1025",
+          color: "orange",
+          group: "bgroup",
+          info: "El Impresor Internacional",
+        },
+        {
+          id: "1126",
+          color: "orange",
+          group: "bgroup",
+          info: "Clarity Color",
+        },
+        {
+          id: "1121",
+          color: "orange",
+          group: "bgroup",
+          info: "Caralbo Industries",
+        },
+
+        // Módulo 1221
+        {
+          id: "1221",
+          color: "yellow",
+          group: "single",
+          info: "Amprro",
+        },
+
+        // Módulos del grupo Y (octavo grupo)
+        {
+          id: "1329",
+          color: "yellow",
+          group: "ygroup",
+          info: "Promo-T",
+        },
+        {
+          id: "1430",
+          color: "yellow",
+          group: "ygroup",
+          info: "X Promo",
+        },
+        {
+          id: "1325",
+          color: "yellow",
+          group: "ygroup",
+          info: "Zaval",
+        },
+        {
+          id: "1426",
+          color: "yellow",
+          group: "ygroup",
+          info: "Hot-Fix",
+        },
+        {
+          id: "1321",
+          color: "yellow",
+          group: "ygroup",
+          info: "Bolsen",
+        },
+        {
+          id: "1422",
+          color: "yellow",
+          group: "ygroup",
+          info: "SOUL&BLUES",
+        },
+
+        // Módulo Z
+        {
+          id: "1421",
+          color: "yellow",
+          group: "single",
+          info: "JHK T-SHIRT",
+        },
+
+        // Módulos del grupo Y (noveno grupo)
+        {
+          id: "1529",
+          color: "yellow",
+          group: "ygroup",
+          info: "Optima Mayoreo",
+        },
+        {
+          id: "1630",
+          color: "yellow",
+          group: "ygroup",
+          info: "Atlantis Headwear",
+        },
+        {
+          id: "1525",
+          color: "yellow",
+          group: "ygroup",
+          info: "Fintex",
+        },
+        {
+          id: "1626",
+          color: "yellow",
+          group: "ygroup",
+          info: "Novabori",
+        },
+        {
+          id: "1521",
+          color: "yellow",
+          group: "ygroup",
+          info: "Embrotex",
+        },
+        {
+          id: "1622",
+          color: "yellow",
+          group: "ygroup",
+          info: "Sport Caps",
+        },
+
+        // Módulos del grupo B (segundo grupo)
+        {
+          id: "1629",
+          color: "yellow",
+          group: "bgroup",
+          info: "Diseños Alegandrez",
+        },
+        {
+          id: "1625",
+          color: "yellow",
+          group: "bgroup",
+          info: "Kyma",
+        },
+        {
+          id: "1726",
+          color: "yellow",
+          group: "bgroup",
+          info: "Kolormats Publicidad",
+        },
+        {
+          id: "1621",
+          color: "yellow",
+          group: "bgroup",
+          info: "XPRESSIONES",
+        },
+
+        // Módulos del grupo X (nuevo grupo)
+        {
+          id: "1721",
+          color: "yellow",
+          group: "xgroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1725",
+          color: "yellow",
+          group: "xgroup",
+          info: "Hilafin",
+        },
+        {
+          id: "1826",
+          color: "yellow",
+          group: "xgroup",
+          info: "Box Populi",
+        },
+        {
+          id: "1729",
+          color: "yellow",
+          group: "xgroup",
+          info: "Diseños Alegandrez",
+        },
+        {
+          id: "1830",
+          color: "yellow",
+          group: "xgroup",
+          info: "Diseños Alegandrez",
+        },
+
+        // Módulos del grupo Ñ
+        {
+          id: "1829",
+          color: "yellow",
+          group: "ngroup",
+          info: "SIPP Sistema Integrado Para Productos Promocionales",
+        },
+        {
+          id: "1821",
+          color: "yellow",
+          group: "ngroup",
+          info: "Preslow",
+        },
+
+        // Módulos del grupo P
+        {
+          id: "1929",
+          color: "yellow",
+          group: "pgroup",
+          info: "SV Sport",
+        },
+        {
+          id: "1921",
+          color: "yellow",
+          group: "pgroup",
+          info: "Danpex",
+        },
+
+        // Módulos del grupo PR
+        {
+          id: "2030",
+          color: "yellow",
+          group: "prgroup",
+          info: "Dimension Espacio",
+        },
+        {
+          id: "2026",
+          color: "yellow",
+          group: "prgroup",
+          info: "Diseño MDC",
+        },
+        {
+          id: "2022",
+          color: "yellow",
+          group: "prgroup",
+          info: "Fandango, Corbatas Y Mascadas",
+        },
+
+        // Módulos del grupo H
+        {
+          id: "2130",
+          color: "yellow",
+          group: "hgroup",
+          info: "Medallas Y Monedas Romero",
+        },
+        {
+          id: "2128",
+          color: "yellow",
+          group: "hgroup",
+          info: "Remo",
+        },
+        {
+          id: "2122",
+          color: "yellow",
+          group: "hgroup",
+          info: "PS Import & Export",
+        },
+
+        // Módulos del grupo T
+        {
+          id: "2029",
+          color: "yellow",
+          group: "tgroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "2025",
+          color: "yellow",
+          group: "tgroup",
+          info: "Jofinsa & Industria Hersamex",
+        },
+        {
+          id: "2021",
+          color: "yellow",
+          group: "tgroup",
+          info: "Playeras Mark",
+        },
+
+        // Módulos de la izquierda (148 al 112)
+        {
+          id: "148",
+          color: "red",
+          group: "left",
+          info: "Copamex Music TV",
+        },
+        {
+          id: "146",
+          color: "red",
+          group: "left",
+          info: "Merca2.0-Servicios de informacion y medios especializados en marketing, publicidad de comunicacion y analisis de mercado",
+        },
+        {
+          id: "142",
+          color: "red",
+          group: "left",
+          info: "PREVENTA",
+        },
+        {
+          id: "140",
+          color: "red",
+          group: "left",
+          info: "Información del expositor",
+        },
+        {
+          id: "136",
+          color: "red",
+          group: "left",
+          info: "DSLATAM ASOCIACION DIGITAL SIGNAGE LATINOAMERICA-Grupo de profesionales y especialistas en digital signage y dooh ",
+        },
+        {
+          id: "134",
+          color: "red",
+          group: "left",
+          info: "Isimultanea- soluciones innovadoras en interpretación simultánea y eventos silenciosos",
+        },
+        {
+          id: "132",
+          color: "red",
+          group: "left",
+          info: "TCHS Technologies- PROPORCIONAR SERVICIOS DE TECNOLOGÍA DE PRIMER NIVEL A EMPRESAS DE TODOS TAMAÑOS",
+        },
+        {
+          id: "130",
+          color: "red",
+          group: "left",
+          info: "Información del expositor",
+        },
+        {
+          id: "128",
+          color: "red",
+          group: "left",
+          info: "Información del expositor",
+        },
+        {
+          id: "126",
+          color: "red",
+          group: "left",
+          info: "SOC XQUENDA-Te acompañamos a crecer con asesoría cercana y clara. especialistas en financiamiento",
+        },
+        {
+          id: "124",
+          color: "red",
+          group: "left",
+          info: "Medios Kreativos-Especialistas en publicidad btl y marketing digital",
+        },
+        {
+          id: "122",
+          color: "red",
+          group: "left",
+          info: "DKOSTORE-Organización de eventos, productos personalizados, kits de bienvenida fiestas tematicas, souvenirs, trofeos, decoración y experiencias corporativas",
+        },
+        {
+          id: "120",
+          color: "red",
+          group: "left",
+          info: "Red Companies Systems-Tecnología",
+        },
+        {
+          id: "116",
+          color: "red",
+          group: "left",
+          info: "Octopy-En octopy somos una fábrica que crea robots e innovación tecnológica para eventos y marketing de las empresas",
+        },
+        {
+          id: "114",
+          color: "red",
+          group: "left",
+          info: "Intellion Tech-Intellion desarrolla soluciones de inteligencia visual y análisis de datos, combinando hardware avanzado y software",
+        },
+        {
+          id: "112",
+          color: "red",
+          group: "left",
+          info: "Información del expositor",
+        },
+
+        // Módulos de la derecha
+        {
+          id: "2139",
+          color: "yellow",
+          group: "right",
+          info: "SERSOMEX EL ARTE EN UNA BUFANDA",
+        },
+        {
+          id: "2137",
+          color: "yellow",
+          group: "right",
+          info: "Vedia Industrial",
+        },
+        {
+          id: "2135",
+          color: "yellow",
+          group: "right",
+          info: "Azafran Boutique",
+        },
+        {
+          id: "2133",
+          color: "yellow",
+          group: "right",
+          info: "Información del expositor",
+        },
+        {
+          id: "2131",
+          color: "yellow",
+          group: "right",
+          info: "Polipropileno Empaque Y Publicidad",
+        },
+        {
+          id: "2129",
+          color: "yellow",
+          group: "right",
+          info: "Wamis",
+        },
+        {
+          id: "2127",
+          color: "yellow",
+          group: "right",
+          info: "CUP IT! Mexico",
+        },
+        {
+          id: "2125",
+          color: "yellow",
+          group: "right",
+          info: "Textil & promotional Products",
+        },
+        {
+          id: "2123",
+          color: "yellow",
+          group: "right",
+          info: "Información del expositor",
+        },
+        {
+          id: "2121",
+          color: "yellow",
+          group: "right",
+          info: "Matina Notebooks",
+        },
+        {
+          id: "2119",
+          color: "yellow",
+          group: "right",
+          info: "Promocolor Mex",
+        },
+        {
+          id: "2115",
+          color: "yellow",
+          group: "right",
+          info: "Grupo Rupek",
+        },
+        {
+          id: "2113",
+          color: "yellow",
+          group: "right",
+          info: "Promaplastic",
+        },
+        {
+          id: "2111",
+          color: "yellow",
+          group: "right",
+          info: "Cilindros y Fotobotones Publicitarios De Mexico",
+        },
+        {
+          id: "2107",
+          color: "yellow",
+          group: "right",
+          info: "Clise / Tecnologia en Emblemas",
+        },
+
+        // Módulos 2100 y 2102
+        {
+          id: "2100",
+          color: "yellow",
+          group: "single",
+          info: "Panal Creativo",
+        },
+        {
+          id: "2102",
+          color: "yellow",
+          group: "single",
+          info: "Empresa de tecnología innovadora",
+        },
+
+        // Módulos del pasillo E
+        {
+          id: "337",
+          color: "red",
+          group: "ngroup",
+          info: " Katrina MKT-Agencia de marketing btl",
+        },
+        {
+          id: "438",
+          color: "red",
+          group: "ngroup",
+          info: "AMERICAN EXPRESS-American express ofrece servicios superiores que exceden las expectativas de los clientes en productos financieros",
+        },
+        {
+          id: "333",
+          color: "red",
+          group: "ngroup",
+          info: "BOOM Growthpartner-Agencia de mercadotecnia 360, siendo la única agencia growth partner en méxico donde el objetivo es ver el mayor retorno de la inversión",
+        },
+        {
+          id: "434",
+          color: "red",
+          group: "ngroup",
+          info: "The Block-Un colectivo de talentos con experiencia de 25 años en el desarrollo y realización de campañas de publicidad",
+        },
+
+        {
+          id: "437",
+          color: "green",
+          group: "ngroup",
+          info: "RSM Producciones-Nos especializamos en la producción de lanzamientos, convenciones, pasarelas, ruedas de prensa, showrooms, stand, expos, cierre de fin de año, carros alegóricos, entre mucho más",
+        },
+        {
+          id: "538",
+          color: "green",
+          group: "ngroup",
+          info: "Integritas-Somos una empresa de robots de servicio en méxico",
+        },
+        {
+          id: "600",
+          color: "green",
+          group: "ygroup",
+          info: "Pro Display-Fábrica de displays y exhibidores de alta gama, customizados y multimaterial",
+        },
+        {
+          id: "601",
+          color: "green",
+          group: "ygroup",
+          info: "CHARGEU - CHARGEFUZE-Marketing y tecnología",
+        },
+        {
+          id: "602",
+          color: "green",
+          group: "ygroup",
+          info: "Jaime Bravo",
+        },
+        {
+          id: "433",
+          color: "green",
+          group: "ngroup",
+          info: "E-MARKEED",
+        },
+        {
+          id: "534",
+          color: "green",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+
+        // Módulo publicitatalks
+        {
+          id: "publicitatalks",
+          color: "",
+          group: "single",
+          info: "Las conferencias con tendencia 2025",
+        },
+
+        // Módulos 733 y 737
+        {
+          id: "733",
+          color: "green",
+          group: "single",
+          info: "Información del expositor",
+        },
+        {
+          id: "737",
+          color: "green",
+          group: "single",
+          info: "Virtual Media-VIRTUAL ES UNA EMPRESA DEDICADA A LA COMERCIALIZACIÓN Y DISTRIBUCIÓN DE EQUIPOS TECNOLÓGICOS",
+        },
+        {
+          id: "800",
+          color: "orange",
+          group: "ygroup",
+          info: "Web ID-Iimportadores directos y distribuidores directos de fabrica de las principales soluciones de identificación de personal e impresión de etiquetas en todas sus aplicaciones",
+        },
+
+        // Módulo 833
+        {
+          id: "833",
+          color: "orange",
+          group: "single",
+          info: "Información del expositor",
+        },
+
+        // Más módulos del grupo N
+        {
+          id: "937",
+          color: "orange",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1038",
+          color: "orange",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "933",
+          color: "orange",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1034",
+          color: "orange",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+
+        {
+          id: "1037",
+          color: "orange",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1138",
+          color: "orange",
+          group: "ngroup",
+          info: "DISPLAYS, LONAS Y + ",
+        },
+        {
+          id: "1033",
+          color: "orange",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1134",
+          color: "orange",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+
+        // Módulo 1133
+        {
+          id: "1133",
+          color: "orange",
+          group: "single",
+          info: "Sideco",
+        },
+
+        // Más módulos del grupo N
+        {
+          id: "1237",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1338",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1233",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1334",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+
+        // Módulos del grupo O
+        {
+          id: "1333",
+          color: "yellow",
+          group: "ogroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1434",
+          color: "yellow",
+          group: "ogroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1337",
+          color: "yellow",
+          group: "ogroup",
+          info: "Información del expositor",
+        },
+
+        // Módulos del grupo S
+        {
+          id: "1437",
+          color: "yellow",
+          group: "sgroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1433",
+          color: "yellow",
+          group: "sgroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1536",
+          color: "yellow",
+          group: "sgroup",
+          info: "Información del expositor",
+        },
+
+        // Más módulos del grupo N
+        {
+          id: "1537",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1638",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1533",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1634",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+
+        // Módulos del grupo J
+        {
+          id: "1633",
+          color: "yellow",
+          group: "jgroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1734",
+          color: "yellow",
+          group: "jgroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1738",
+          color: "yellow",
+          group: "jgroup",
+          info: "Información del expositor",
+        },
+
+        // Más módulos del grupo N
+        {
+          id: "1737",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1838",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1733",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1834",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+
+        {
+          id: "1837",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1938",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1833",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1934",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+
+        // Módulo 1933
+        {
+          id: "1933",
+          color: "yellow",
+          group: "single",
+          info: "Información del expositor",
+        },
+
+        // Último grupo N
+        {
+          id: "1937",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "2038",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "1933",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
+        {
+          id: "2034",
+          color: "yellow",
+          group: "ngroup",
+          info: "Información del expositor",
+        },
       ];
 
       // Variables para el listado de módulos
       let activeFilter = "all";
       let searchQuery = "";
       let filteredModules = [];
-
-      // Elementos DOM para el listado de módulos
-      let modulesContainer,
-        moduleSearchInput,
-        filterButtons,
-        backToTop,
-        toggleMapBtn;
 
       // Función para filtrar módulos
       function filterModules(query, filterType = "all") {
@@ -2598,13 +5145,13 @@
       function createModuleCard(module, highlight = false) {
         const highlightClass = highlight || module.highlight ? "highlight" : "";
         return `
-          <div class="module-card ${
-            module.color || ""
-          } ${highlightClass}" data-id="${module.id}">
-            <h3>Stand ${module.id}</h3>
-            <p>${module.info}</p>
-          </div>
-        `;
+        <div class="module-card ${
+          module.color || ""
+        } ${highlightClass}" data-id="${module.id}">
+          <h3>Stand ${module.id}</h3>
+          <p>${module.info}</p>
+        </div>
+      `;
       }
 
       // Función para actualizar la visualización de los módulos
@@ -2622,37 +5169,18 @@
         moduleCards.forEach((card) => {
           card.addEventListener("click", () => {
             const moduleId = card.getAttribute("data-id");
-
-            // Mostrar el mapa si está oculto
-            if (interactiveMapContainer.style.display !== "block") {
-              interactiveMapContainer.style.display = "block";
-              toggleMapBtn.textContent = "Ocultar Mapa Interactivo";
-
-              // Inicializar el mapa si es la primera vez
-              if (!mapInitialized) {
-                initMap();
-                mapInitialized = true;
-              }
-            }
-
-            // Seleccionar el stand en el mapa
-            selectStand(moduleId);
-
-            // Desplazarse al mapa
-            interactiveMapContainer.scrollIntoView({ behavior: "smooth" });
+            alert(
+              `Stand ${moduleId}: ${
+                allModules.find((m) => m.id === moduleId)?.info ||
+                "Información no disponible"
+              }`
+            );
           });
         });
       }
 
       // Inicializar el listado de módulos
       function initModulesList() {
-        // Obtener referencias a elementos DOM
-        modulesContainer = document.getElementById("modules-container");
-        moduleSearchInput = document.getElementById("module-search");
-        filterButtons = document.querySelectorAll(".filter-btn");
-        backToTop = document.getElementById("back-to-top");
-        toggleMapBtn = document.getElementById("toggle-map-btn");
-
         // Cargar los módulos iniciales
         filteredModules = allModules;
         updateModulesDisplay();
@@ -2712,15 +5240,10 @@
         });
       }
 
-      // Inicializar la aplicación
+      // Inicializar la aplicación cuando el DOM esté listo
       document.addEventListener("DOMContentLoaded", () => {
+        // Inicializar el listado de módulos
         initModulesList();
-
-        // Mostrar el botón de rotación solo en dispositivos móviles
-        const rotateButton = document.getElementById("rotate-map-btn");
-        if (!isMobileDevice()) {
-          rotateButton.style.display = "none";
-        }
       });
     </script>
   </body>
